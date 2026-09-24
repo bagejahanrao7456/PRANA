@@ -1,0 +1,32 @@
+[
+    {
+      "id": "V001",
+      "name": "Rampur",
+      "population": 4820,
+      "latitude": 28.6139,
+      "longitude": 77.2090,
+      "hazardScore": 90,
+      "vulnerabilityScore": 70,
+      "disasterHistoryScore": 80
+    },
+    {
+      "id": "V002",
+      "name": "Lakshmipur",
+      "population": 2300,
+      "latitude": 28.6280,
+      "longitude": 77.2180,
+      "hazardScore": 55,
+      "vulnerabilityScore": 60,
+      "disasterHistoryScore": 40
+    },
+    {
+      "id": "V003",
+      "name": "Chandpur",
+      "population": 5100,
+      "latitude": 28.6000,
+      "longitude": 77.1900,
+      "hazardScore": 25,
+      "vulnerabilityScore": 35,
+      "disasterHistoryScore": 20
+    }
+  ]
