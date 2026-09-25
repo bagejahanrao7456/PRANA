@@ -51,6 +51,21 @@ app.get("/api/villages", (req, res) => {
    
   })
 })
+app.get("/api/relocation-sites", (req, res) => {
+    const filePath = path.join(__dirname, "../data/relocationSites.json")
+  
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        return res.status(500).json({
+          error: "Unable to read relocation sites data"
+        })
+      }
+  
+      const relocationSites = JSON.parse(data)
+  
+      res.json(relocationSites)
+    })
+  })
 
 app.listen(PORT, () => {
   console.log(`PRANA server running on http://localhost:${PORT}`)

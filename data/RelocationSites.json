@@ -1,0 +1,44 @@
+[
+    {
+      "id": "R001",
+      "name": "Safe Zone A",
+      "latitude": 28.65,
+      "longitude": 77.25,
+      "capacity": 6000,
+      "facilities": {
+        "water": true,
+        "hospital": true,
+        "school": true,
+        "road": true,
+        "electricity": true
+      }
+    },
+    {
+      "id": "R002",
+      "name": "Safe Zone B",
+      "latitude": 28.67,
+      "longitude": 77.28,
+      "capacity": 3000,
+      "facilities": {
+        "water": true,
+        "hospital": false,
+        "school": true,
+        "road": true,
+        "electricity": true
+      }
+    },
+    {
+      "id": "R003",
+      "name": "Safe Zone C",
+      "latitude": 28.59,
+      "longitude": 77.17,
+      "capacity": 7000,
+      "facilities": {
+        "water": true,
+        "hospital": true,
+        "school": true,
+        "road": true,
+        "electricity": true
+      }
+    }
+  ]
