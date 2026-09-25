@@ -17,7 +17,11 @@ function App() {
     }
   }, [selectedVillage]);
   useEffect(() => {
-    fetch("http://localhost:5001/api/relocation-sites")
+    if (!selectedVillage) return;
+  
+    fetch(
+      `http://localhost:5001/api/relocation-sites?villageId=${selectedVillage.id}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setRelocationSites(data);
@@ -25,7 +29,7 @@ function App() {
       .catch((error) => {
         console.error("Error fetching relocation sites:", error);
       });
-  }, []);
+  }, [selectedVillage]);
   const highRiskCount = villages.filter(
     (village) => village.riskLevel === "HIGH"
   ).length;
