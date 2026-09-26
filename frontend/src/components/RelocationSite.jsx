@@ -2,7 +2,7 @@ function RelocationSites({ sites, village }) {
   return (
     <div id="relocation" className="mt-8">
       <h2 className="text-xl font-semibold mb-4">Relocation Sites</h2>
-      {village && (
+      {village && village.relocationPriority !== "MONITOR" && (
         <div className="mb-5 rounded-xl border border-slate-700 bg-slate-800 p-4">
           <h3 className="font-bold text-white">Recommended Relocation Sites</h3>
 
@@ -11,6 +11,16 @@ function RelocationSites({ sites, village }) {
               .filter((site) => site.suitability === "HIGH")
               .map((site) => site.name)
               .join(", ") || "No suitable site available"}
+          </p>
+        </div>
+      )}
+
+      {village && village.relocationPriority === "MONITOR" && (
+        <div className="mb-5 rounded-xl border border-slate-700 bg-slate-800 p-4">
+          <h3 className="font-bold text-white">Relocation Not Required</h3>
+
+          <p className="mt-2 text-slate-300">
+            This village is currently under monitoring.
           </p>
         </div>
       )}

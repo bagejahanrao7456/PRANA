@@ -7,7 +7,9 @@
       "longitude": 77.2090,
       "hazardScore": 90,
       "vulnerabilityScore": 70,
-      "disasterHistoryScore": 80
+      "disasterHistoryScore": 80,
+      "floodRisk": "HIGH",
+  "landslideRisk": "MEDIUM"
     },
     {
       "id": "V002",
@@ -17,7 +19,9 @@
       "longitude": 77.2180,
       "hazardScore": 55,
       "vulnerabilityScore": 60,
-      "disasterHistoryScore": 40
+      "disasterHistoryScore": 40,
+      "floodRisk": "MEDIUM",
+"landslideRisk": "LOW"
     },
     {
       "id": "V003",
@@ -27,6 +31,8 @@
       "longitude": 77.1900,
       "hazardScore": 25,
       "vulnerabilityScore": 35,
-      "disasterHistoryScore": 20
+      "disasterHistoryScore": 20,
+      "floodRisk": "LOW",
+"landslideRisk": "LOW"
     }
   ]

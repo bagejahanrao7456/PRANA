@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  CircleMarker,
+  Circle,
+  Popup,
+} from "react-leaflet";
 
 import "leaflet/dist/leaflet.css";
 
@@ -40,6 +46,38 @@ function RiskMap({ onVillageSelect }) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        <Circle
+          center={[28.62, 77.21]}
+          radius={1800}
+          pathOptions={{
+            color: "blue",
+            fillColor: "blue",
+            fillOpacity: 0.15,
+          }}
+        >
+          <Popup>
+            <strong>Flood Hazard Zone</strong>
+            <br />
+            Area with elevated flood risk
+          </Popup>
+        </Circle>
+
+        <Circle
+          center={[28.6, 77.19]}
+          radius={1400}
+          pathOptions={{
+            color: "orange",
+            fillColor: "orange",
+            fillOpacity: 0.15,
+          }}
+        >
+          <Popup>
+            <strong>Landslide Hazard Zone</strong>
+            <br />
+            Area with elevated landslide risk
+          </Popup>
+        </Circle>
+
         {villages.map((village) => {
           const riskColor = getRiskColor(village.riskLevel);
 
@@ -54,29 +92,30 @@ function RiskMap({ onVillageSelect }) {
                 fillOpacity: 0.8,
               }}
             >
-              
-                <Popup>
-                  <strong>{village.name}</strong>
-                  <br />
-                  Population: {village.population}
-                  <br />
-                  Risk Score: {village.riskScore}
-                  <br />
-                  Risk Level: {village.riskLevel}
-                  <br />
-                  Red Zone: {village.redZone ? "YES" : "NO"}
-                  <br />
-                  Priority: {village.relocationPriority}
-                  <br />
+              <Popup>
+                <div className="space-y-2">
+                  <h3 className="text-base font-bold">{village.name}</h3>
+
+                  <p>Population: {village.population}</p>
+                  <p>Risk Score: {village.riskScore}</p>
+                  <p>Risk Level: {village.riskLevel}</p>
+
+                  <p>Flood Risk: {village.floodRisk}</p>
+                  <p>Landslide Risk: {village.landslideRisk}</p>
+                  <p>Red Zone: {village.redZone ? "YES" : "NO"}</p>
+                  <p>Priority: {village.relocationPriority}</p>
+
                   <button
-                    onClick={() => onVillageSelect(village)}
-                    className="mt-2 rounded bg-slate-900 px-3 py-2 text-white"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onVillageSelect(village);
+                    }}
+                    className="mt-3 rounded bg-slate-900 px-3 py-2 text-white"
                   >
                     View Details
                   </button>
-                  
-                </Popup>
-             
+                </div>
+              </Popup>
             </CircleMarker>
           );
         })}
