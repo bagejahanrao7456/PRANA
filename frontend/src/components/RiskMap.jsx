@@ -9,17 +9,27 @@ import {
 
 import "leaflet/dist/leaflet.css";
 
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5001";
+
 function RiskMap({ onVillageSelect }) {
   const [villages, setVillages] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/villages")
-      .then((response) => response.json())
+    fetch(`${API_URL}/api/villages`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch villages");
+        }
+
+        return response.json();
+      })
       .then((data) => {
         setVillages(data);
       })
       .catch((error) => {
         console.error("Error fetching villages:", error);
+        setVillages([]);
       });
   }, []);
 
@@ -40,7 +50,11 @@ function RiskMap({ onVillageSelect }) {
 
   return (
     <div className="relative h-[500px] w-full overflow-hidden rounded-xl border border-slate-800">
-      <MapContainer center={position} zoom={10} className="h-full w-full">
+      <MapContainer
+        center={position}
+        zoom={10}
+        className="h-full w-full"
+      >
         <TileLayer
           attribution="&copy; OpenStreetMap contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -94,7 +108,9 @@ function RiskMap({ onVillageSelect }) {
             >
               <Popup>
                 <div className="space-y-2">
-                  <h3 className="text-base font-bold">{village.name}</h3>
+                  <h3 className="text-base font-bold">
+                    {village.name}
+                  </h3>
 
                   <p>Population: {village.population}</p>
                   <p>Risk Score: {village.riskScore}</p>
@@ -102,8 +118,12 @@ function RiskMap({ onVillageSelect }) {
 
                   <p>Flood Risk: {village.floodRisk}</p>
                   <p>Landslide Risk: {village.landslideRisk}</p>
-                  <p>Red Zone: {village.redZone ? "YES" : "NO"}</p>
-                  <p>Priority: {village.relocationPriority}</p>
+                  <p>
+                    Red Zone: {village.redZone ? "YES" : "NO"}
+                  </p>
+                  <p>
+                    Priority: {village.relocationPriority}
+                  </p>
 
                   <button
                     onClick={(e) => {
@@ -123,7 +143,9 @@ function RiskMap({ onVillageSelect }) {
 
       {/* Risk Legend */}
       <div className="absolute top-4 right-4 z-[1000] bg-white rounded-lg shadow-lg p-4 text-sm">
-        <h3 className="font-bold text-slate-800 mb-3">Risk Level</h3>
+        <h3 className="font-bold text-slate-800 mb-3">
+          Risk Level
+        </h3>
 
         <div className="flex items-center gap-2 mb-2">
           <span className="w-3 h-3 rounded-full bg-red-500"></span>

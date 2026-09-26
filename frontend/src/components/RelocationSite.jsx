@@ -1,7 +1,9 @@
-function RelocationSites({ sites, village }) {
+function RelocationSites({ sites = [], village }) {
   return (
     <div id="relocation" className="mt-8">
       <h2 className="text-xl font-semibold mb-4">Relocation Sites</h2>
+
+      {/* Recommended Relocation Sites */}
       {village && village.relocationPriority !== "MONITOR" && (
         <div className="mb-5 rounded-xl border border-slate-700 bg-slate-800 p-4">
           <h3 className="font-bold text-white">Recommended Relocation Sites</h3>
@@ -15,6 +17,7 @@ function RelocationSites({ sites, village }) {
         </div>
       )}
 
+      {/* Monitoring Message */}
       {village && village.relocationPriority === "MONITOR" && (
         <div className="mb-5 rounded-xl border border-slate-700 bg-slate-800 p-4">
           <h3 className="font-bold text-white">Relocation Not Required</h3>
@@ -24,6 +27,8 @@ function RelocationSites({ sites, village }) {
           </p>
         </div>
       )}
+
+      {/* Relocation Site Cards */}
       <div className="grid md:grid-cols-3 gap-5">
         {sites.map((site) => (
           <div
@@ -35,9 +40,10 @@ function RelocationSites({ sites, village }) {
             <p className="mt-2 text-slate-400">
               Capacity: {site.capacity} people
             </p>
+
             {village && (
               <p className="mt-2 font-semibold">
-                Suitability: {site.suitability}
+                Suitability: {site.suitability || "N/A"}
               </p>
             )}
 
@@ -51,11 +57,16 @@ function RelocationSites({ sites, village }) {
 
             <div className="mt-4 text-sm space-y-1">
               <p>Land Available: {site.landAvailable ? "✓" : "✗"}</p>
-              <p>Water: {site.facilities.water ? "✓" : "✗"}</p>
-              <p>Hospital: {site.facilities.hospital ? "✓" : "✗"}</p>
-              <p>School: {site.facilities.school ? "✓" : "✗"}</p>
-              <p>Road: {site.facilities.road ? "✓" : "✗"}</p>
-              <p>Electricity: {site.facilities.electricity ? "✓" : "✗"}</p>
+
+              <p>Water: {site.facilities?.water ? "✓" : "✗"}</p>
+
+              <p>Hospital: {site.facilities?.hospital ? "✓" : "✗"}</p>
+
+              <p>School: {site.facilities?.school ? "✓" : "✗"}</p>
+
+              <p>Road: {site.facilities?.road ? "✓" : "✗"}</p>
+
+              <p>Electricity: {site.facilities?.electricity ? "✓" : "✗"}</p>
             </div>
           </div>
         ))}
