@@ -50,6 +50,7 @@ function RelocationSites({ sites, village }) {
             </p>
 
             <div className="mt-4 text-sm space-y-1">
+              <p>Land Available: {site.landAvailable ? "✓" : "✗"}</p>
               <p>Water: {site.facilities.water ? "✓" : "✗"}</p>
               <p>Hospital: {site.facilities.hospital ? "✓" : "✗"}</p>
               <p>School: {site.facilities.school ? "✓" : "✗"}</p>

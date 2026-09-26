@@ -5,6 +5,7 @@
       "latitude": 28.65,
       "longitude": 77.25,
       "capacity": 6000,
+      "landAvailable": true,
       "facilities": {
         "water": true,
         "hospital": true,
@@ -19,6 +20,7 @@
       "latitude": 28.67,
       "longitude": 77.28,
       "capacity": 3000,
+"landAvailable": true,
       "facilities": {
         "water": true,
         "hospital": false,
@@ -33,6 +35,7 @@
       "latitude": 28.59,
       "longitude": 77.17,
       "capacity": 7000,
+      "landAvailable": true,
       "facilities": {
         "water": true,
         "hospital": true,
